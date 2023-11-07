@@ -1,0 +1,16 @@
+INSERT INTO
+  employee
+(
+  name,
+  lastName,
+  department,
+  jobTitle,
+  salary
+)
+VALUES (
+  '{{.Name}}',
+  '{{.LastName}}',
+  '{{.Department}}',
+  '{{.JobTitle}}',
+  {{.Salary}}
+);
