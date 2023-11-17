@@ -24,9 +24,9 @@ char *readFileMalloc(char *filename) {
     return NULL;
   }
 
-  (void) fseek(fp, 0, SEEK_END); // Seek to EOF to get the length with ftell()
+  (void)fseek(fp, 0, SEEK_END); // Seek to EOF to get the length with ftell()
   length = ftell(fp);
-  (void) fseek(fp, 0, SEEK_SET); // Reset seek to beginning of file
+  (void)fseek(fp, 0, SEEK_SET); // Reset seek to beginning of file
   content = (char *) malloc(sizeof(char) * (length + 1));
 
   i = 0;
@@ -35,7 +35,7 @@ char *readFileMalloc(char *filename) {
     i++;
   }
 
-  (void) fclose(fp);
+  (void)fclose(fp);
 
   return content;
 }

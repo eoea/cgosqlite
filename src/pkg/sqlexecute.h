@@ -30,13 +30,13 @@ int sqlExecute(char *scriptStmt) {
     return EXIT_FAILURE;
   }
 
-  (void) strncpy(dbPath, cwd, sizeof(dbPath));
-  (void) strncat(dbPath, DATABASE_PATH, strlen(DATABASE_PATH));
+  (void)strncpy(dbPath, cwd, sizeof(dbPath));
+  (void)strncat(dbPath, DATABASE_PATH, strlen(DATABASE_PATH));
 
-  (void) sqlite3_open(dbPath, &db);
+  (void)sqlite3_open(dbPath, &db);
   resp = sqlite3_exec(db, scriptStmt, NULL, NULL, &err);
 
-  (void) sqlite3_close(db);
+  (void)sqlite3_close(db);
 
   if (resp != SQLITE_OK) {
     fprintf(stderr, "Error: interfacing with database %s\n.", err);
@@ -63,11 +63,11 @@ int sqlExecuteFile(char *scriptPath) {
     return EXIT_FAILURE;
   }
 
-  (void) strncpy(dbPath, cwd, sizeof(dbPath));
-  (void) strncat(dbPath, DATABASE_PATH, strlen(DATABASE_PATH));
+  (void)strncpy(dbPath, cwd, sizeof(dbPath));
+  (void)strncat(dbPath, DATABASE_PATH, strlen(DATABASE_PATH));
 
-  (void) strncpy(path, cwd, sizeof(path));
-  (void) strncat(path, scriptPath, strlen(scriptPath));
+  (void)strncpy(path, cwd, sizeof(path));
+  (void)strncat(path, scriptPath, strlen(scriptPath));
 
   sqlScriptContent = readFileMalloc(path);
   if (sqlScriptContent == NULL) {
@@ -75,10 +75,10 @@ int sqlExecuteFile(char *scriptPath) {
     return EXIT_FAILURE;
   }
 
-  (void) sqlite3_open(dbPath, &db);
+  (void)sqlite3_open(dbPath, &db);
   resp = sqlite3_exec(db, sqlScriptContent, NULL, NULL, &err);
 
-  (void) sqlite3_close(db);
+  (void)sqlite3_close(db);
   free(sqlScriptContent); // Must free because readFileMalloc() calls malloc.
 
   if (resp != SQLITE_OK) {
